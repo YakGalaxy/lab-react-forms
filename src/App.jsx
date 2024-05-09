@@ -15,23 +15,60 @@ function App() {
   const [program, setProgram] = useState("-- None --");
   const [graduationYear, setGraduationYear] = useState(0);
   const [graduated, setGraduated] = useState(false);
-  // const [submit, setSubmit] = useState();
 
-  const handleFullNameInput = (e) => { setfullName(e.target.value); }
-  const handleImageInput = (e) => { setImage(e.target.value); }
-  const handlePhoneInput = (e) => { setPhone(e.target.value); }
-  const handleEmailInput = (e) => { setEmail(e.target.value); }
-  const handleProgramInput = (e) => { setProgram(e.target.value); }
-  const handleGraduationYearInput = (e) => { setGraduationYear(e.target.value); }
-  const handleGraduatedInput = (e) => { setGraduated(e.target.value); }
+  const handleFullNameInput = (e) => {
+    setfullName(e.target.value);
+  };
+  const handleImageInput = (e) => {
+    setImage(e.target.value);
+  };
+  const handlePhoneInput = (e) => {
+    setPhone(e.target.value);
+  };
+  const handleEmailInput = (e) => {
+    setEmail(e.target.value);
+  };
+  const handleProgramInput = (e) => {
+    setProgram(e.target.value);
+  };
+  const handleGraduationYearInput = (e) => {
+    setGraduationYear(e.target.value);
+  };
+  const handleGraduatedInput = (e) => {
+    setGraduated(e.target.value);
+  };
 
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    addStudent({
+      fullName: fullName,
+      email: email,
+      phone: phone,
+      program: program,
+      image: image,
+      graduationYear: graduationYear,
+      graduated: graduated,
+    });
+    setfullName("");
+    setImage("");
+    setPhone("");
+    setEmail("");
+    setProgram("-- None --");
+    setGraduationYear(0);
+    setGraduated(false);
+  };
+
+  const addStudent = (newStudent) => {
+    const updatedStudents = [newStudent, ...students];
+    setStudents(updatedStudents);
+  };
 
   return (
     <div className="App pt-20">
       <Navbar />
 
       {/* FORM */}
-      <form>
+      <form onSubmit={handleFormSubmit}>
         <span>Add a Student</span>
         <div>
           <label>
